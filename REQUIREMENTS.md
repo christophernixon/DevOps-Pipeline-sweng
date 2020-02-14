@@ -3,9 +3,11 @@ Application / Functionality User Stories
 
 > Describe the Use Cases / User Stories / functionality of your application. What problems does it solve? What features does it have? How will it be consumed? What kind of application are you developing? How will your application be deployed in production (Application Server? Containerized environment)?
 
-Deliverables: 
+## Deliverables: 
+
 - a shared Product Backlog of prioritized user stories. A high level description / presentation of your application.
 - your application.
+- The Big Picture: Architecture Diagram, DevOps Pipeline Diagram
 
 
 Engineering User Stories:
@@ -38,3 +40,60 @@ Consider including the following stages and tools:
 - DEPLOY: Automate the deployment process using tools such as Ansible, GitHub Actions, Travis, Jenkins, etc.
 - TEST: Automate your end-to-end testing. Ex: Selenium. Consider the type of testing (smoke tests, performance)
 - RUN: Automate or document the way your application is managed in production. Ex: how are upgrades performed?
+
+
+Research
+--------
+
+> Optional practices to research and adopt as suitable:
+
+## Practices
+
+- [Impact Mapping](https://openpracticelibrary.com/practice/impact-mapping/)
+- [Backlog Refinement](https://openpracticelibrary.com/practice/backlog-refinement/)
+- [Limit WIP](https://openpracticelibrary.com/practice/limit-work-in-progress/)
+- [Definition of Done](https://openpracticelibrary.com/practice/definition-of-done/)
+- [Continuous Integration](https://openpracticelibrary.com/practice/continuous-integration/)
+- [Continuous Delivery](https://openpracticelibrary.com/practice/continuous-delivery/)
+
+## Adoption and Social Media Presence
+
+- GitHub Pages / Landing Page / WebSite. How are users signing up or learning about your application?
+- Twitter / Social Media Account - how are you gathering feedback from your community, making announcements, and interacting with your users?
+
+## Platform
+
+- Can you deploy your application to multiple cloud providers? Consider building a containerized application that can be deployed on a Kubernetes based platform.
+- How does a developer deploy the application locally? How does your application scale?
+- [IKS Free Cluster](https://www.ibm.com/cloud/container-service/)
+
+
+## Study Material
+
+- [IBM Cognitive Class / Free $1200 Cloud Credits](https://cognitiveclass.ai)
+- [Red Hat DevOps Culture & Practice](https://rht-labs.github.io/enablement-docs/#/) for Container Based Continuous Delivery
+- [IBM Cloud Garage Field Guide](https://www.ibm.com/cloud/architecture/files/ibm-garage-field-guide.pdf)
+- [Katakoda - Kubernetes](https://www.katacoda.com/courses/kubernetes)
+
+
+Architectural Decisions
+-----------------------
+> How are you documenting your technology, platform and architectural decisions? Can you they be reasonably explained to a stakeholder or new team member? Do you understand the impact a specific decision can have on other areas?
+
+|                             |                                                      |           |          |
+| --------------------------- | ---------------------------------------------------- | --------- | -------- |
+| **Subject Area:**           | Container Orchestration                              | **Topic** | Platform |
+| **Architectural Decision:** | Application Landing Platform Container Orchestration | **ID:**   | PLT-001  |
+
+|                                 |                                                                                         |
+| ------------------------------- | --------------------------------------------------------------------------------------- |
+| **Architectural Decision:**     | Use Kubernetes as the main orchestration platform.                                      |
+| **Issue or Problem Statement:** | There are several different orchestration solutions to choose from                      |
+| **Assumptions:**                | The application is developed using Microservices Architecture                           |
+| **Motivation:**                 | Support deployment of the application across multiple cloud providers                   |
+| **Alternatives:**               | PaaS, docker-compose                                                                    |
+| **Justification:**              | Kubernetes currently has widespread adoption across all major infrastructure providers. |
+| **Implications:**               | Develop microservice based containerized applications                                   |
+| **Derived requirements:**       | Make all the container orchestration decisions considering Kubernetes as the platform   |
+| **Related Decisions:**          | AD002                                                                                   |
+| **References:**                 | http://kubernetes.io                                                                    |
