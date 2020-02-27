@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- stable
+cache:
+  directories:
+  - node_modules
+script:
+- npm run build
+true:
+  branch: master
+deploy:
+  provider: heroku
+  api_key:
+    secure: QTrb4EampinljG/3u21qLd9tWEpTrZKqxDkJ7qcixKcgtKoOdrHNyQYVYvE7md/PhqhSidtNOCiS1k+eu38plhYZz97Bx0fzSPcLiyET9vMJ/5BgBqfwTVvBZffmdy9KwRACjylBvff0IV372QPGcOoLe8eqf5zOY9rOedLkEppA7UxA91AmFGGMz7tU5zfdAuTxC4cIoLwh0Tr0N9uNVlq9ovGFy0OTsId2Me1LRsC9vMjoCrwaca6yeX5pLfEsGUpRdPHJ2irlFAzs6woTdwnxw9rtvkhjAI58duNj6LysBoS1LQlOkUq4E5NEDYPnVuj/dCSPQIpYH2jDrmYZJ/iL8U7yIZWloWJEKcKZ3kPPApDQkBmVdqQRSE6nFNgZ2diK8Jlc+0vP4qHmOjo+uvDAfc/25q4fkORqN5WVkJ9okAj1e/CETJgemJ2FIa7V1ilTqv2EnftM8BUDT1KjtHaiBHHD3gJ3IiFOk30xUZGha2TkFvytXbfTuPEw1T+1JoAadqHv7mfuY4e0Sy7An5BLJZbvJ4zPCPMd7SNqOEzvRaIzlNKKQ5L4+ld62SD6bioi0+onORFVcaYYPwTLiLilXl9xVLVRFh5HWGQemkMX7uGADkPyApw6TwCiF8IlFdXdUjd+Lblg/chXGVOV0XRqNbC1YTTUZDJfzLwGHkg=
+  app: react-app-develop
+  on: develop
