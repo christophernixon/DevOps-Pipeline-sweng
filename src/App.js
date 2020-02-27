@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import logo from './logo.svg';
 import React, { useState } from 'react';
 import ReactMapGL from 'react-map-gl';
@@ -26,7 +27,7 @@ function App() {
 
   );
 }
-
+// eslint-disable-next-line
 function startGame(){
   console.log("Start game button pressed!")
 }

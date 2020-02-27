@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactMapGL from 'react-map-gl';
-
+// eslint-disable-next-line
 function Map() {
   const [viewport, setViewport] = useState({
     width: 400,
