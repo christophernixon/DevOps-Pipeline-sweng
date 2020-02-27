@@ -27,4 +27,8 @@ function App() {
   );
 }
 
+function startGame(){
+  console.log("Start game button pressed!")
+}
+
 export default App;
