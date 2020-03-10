@@ -1,0 +1,22 @@
+.popup {  
+    position: fixed;  
+    width: 20%;  
+    height: 60%;  
+    top: 20%;  
+    left: 5%;  
+    right: 10;  
+    bottom: 0;  
+    margin: auto;  
+    background-color: #FFFFFF;
+    border-radius:20px;  
+  }  
+  .popup\_inner {  
+    position: absolute;  
+    left: 25%;  
+    right: 25%;  
+    top: 25%;  
+    bottom: 25%;  
+    margin: auto;  
+    border-radius: 20px;  
+    background: white;  
+  }
