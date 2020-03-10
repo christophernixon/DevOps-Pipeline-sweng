@@ -4,10 +4,17 @@ node_js:
 cache:
   directories:
   - node_modules
+services:
+  - docker
 script:
 - npm run lint:fix
 - npm run build
 - npm run test
+after_sucess:
+- export DEPLOY_TIMESTAMP=`date +'%Y%m%d-%H%M%S'`
+# Building a docker image of the application, and adding both the 'latest' tag and a custom tag with
+# the timestamp the image was built, along with the tranvis build number and branch.
+- docker build -t devops:$DEPLOY_TIMESTAMP-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH -t devops:latest .
 true:
   branch: master
 deploy:
