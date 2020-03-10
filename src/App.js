@@ -11,7 +11,7 @@ class App extends Component {
       viewport: {
         latitude: 37.8,
         longitude: -122.4,
-        zoom: 2,
+        zoom: 1,
         width: "100vw",
         height: "100vh",
         bearing: 0,
