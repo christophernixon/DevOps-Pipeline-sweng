@@ -12,7 +12,7 @@ curl -sL https://ibm.biz/idt-installer | bash
 
 # Logging into the IBM Cloud environment using env variable of API key
 echo "Logging into IBM Cloud using apikey"
-ibmcloud login -a https://api.ng.bluemix.net --apikey $DEVOPS_IBM_KEY
+ibmcloud login -a https://api.eu-gb.bluemix.net --apikey $DEVOPS_IBM_KEY
 if [ $? -ne 0 ]; then
   echo "Failed to authenticate to IBM Cloud"
   exit 1
