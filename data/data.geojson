@@ -1,0 +1,126 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.989308, 40.741895]
+      },
+      "properties" : {
+      "question" : "Where is the Statue of Liberty?",
+      "answer_text" : "Statue of Liberty"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.338027, 48.8611473]
+      },
+      "properties" : {
+      "question" : "Where is the Louvre?",
+      "answer_text" : "The Louvre"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-6.26070499420166, 53.3493537902832]
+      },
+      "properties" : {
+      "question" : "Where did Rebels take over in the Easter Rising?",
+      "answer_text" : ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.15725520253181458, 51.52322769165039]
+      },
+      "properties" : {
+      "question" : "Sherlock Holmes lives on what street?",
+      "answer_text" : ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [139.7594549, 35.6828387]
+      },
+      "properties" : {
+      "question" : "What city is hosting the 2020 Olympics?",
+      "answer_text" : "Toyko"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-96.77510833740234, 32.786415100097656]
+      },
+      "properties" : {
+      "question" : "Where was JFK shot?",
+      "answer_text" : ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-6.25521183013916, 53.34375]
+      },
+      "properties" : {
+      "question" : "Where is the Book of Kells kept?",
+      "answer_text" : ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [49.797218322753906, 26.4682674407959]
+      },
+      "properties" : {
+      "question" : "What is the largest airport in the world?",
+      "answer_text" : ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [78.0421171, 27.175002]
+      },
+      "properties" : {
+      "question" : "Where is the Taj Mahal?",
+      "answer_text" : ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.09714961051940918, 51.50807571411133]
+      },
+      "properties" : {
+      "question" : "Where did Shakespeare put on his plays?",
+      "answer_text" : ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.492316246032715, 41.890220642089844]
+      },
+      "properties" : {
+      "question" : "Where is the Colosseum?",
+      "answer_text" : ""
+      }
+    }
+  ]
+}
