@@ -15,6 +15,6 @@ deploy:
     skip_cleanup: true
     script: chmod +x ./scripts/* && ./scripts/deploy.sh sweng_devops
     on:
-      branch: develop
+      all_branches: true
 notifications:
   slack: group26-sweng:m9L41HvII2Mr7aOkFuGwWCF3
