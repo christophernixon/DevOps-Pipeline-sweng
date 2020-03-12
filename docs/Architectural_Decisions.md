@@ -30,7 +30,7 @@ This file contains information on the major technological, architectural and pla
 
 |                                 |                                                                                         |
 | ------------------------------- | --------------------------------------------------------------------------------------- |
-| **Architectural Decision:**     | Use Travis CI as the main Continuous Integration platform.                                      |
+| **Architectural Decision:**     | Use GitHub as the main Version-control platform.                                  |
 | **Issue or Problem Statement:** | There are several different version-control platforms to choose from.                      |
 | **Assumptions:**                |                            |
 | **Motivation:**                 | Choose a Version-control platform which will support continuous integration of our code, and will allow us to track our team's activity.                     |
