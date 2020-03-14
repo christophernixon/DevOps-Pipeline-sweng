@@ -43,7 +43,7 @@ class App extends Component {
     const { viewport, marker } = this.state;
     return (
       <div>
-        <StartButton />
+        <StartButton label="Start game" ></StartButton>
 
         <ReactMapGL
           {...viewport}
