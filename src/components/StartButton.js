@@ -5,8 +5,8 @@ class StartButton extends React.Component {
   render() {
     return (
       <table className="nav" align="center">
-        <button className="button" onClick={myFunction}>
-          Start Game
+        <button data-testid='button' className="button" onClick={myFunction}>
+          {this.props.label}
         </button>
       </table>
     );
