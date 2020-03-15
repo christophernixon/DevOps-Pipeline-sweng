@@ -13,7 +13,7 @@ script:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: chmod +x ./scripts/* && ./scripts/deploy.sh sweng_devops
+    script: chmod +x ./scripts/* && ./scripts/deploy.sh sweng-devops
     on:
       all_branches: true
 notifications:
