@@ -4,8 +4,12 @@ import green_marker from "./images/green_marker.png";
 import "./App.css";
 import "./map.jsx";
 import StartButton from "./components/StartButton.js";
+import Popup from './components/Popup';
+import questions from './data/questions.txt';
 
-class App extends Component {
+
+class App extends Component { 
+    
   constructor(props) {
     super(props);
     this.state = {
@@ -21,9 +25,17 @@ class App extends Component {
       marker: {
         latitude: 37.8,
         longitude: -122.4
-      }
+      },
+
+     showPopup: false 
     };
   }
+
+  togglePopup() {  
+    this.setState({  
+         showPopup: !this.state.showPopup  
+    });  
+  } 
 
   _onMarkerDragEnd = event => {
     this.setState({
@@ -32,7 +44,8 @@ class App extends Component {
         longitude: event.lngLat[0]
       }
     });
-  };
+  }
+
 
   render() {
     const marker_style = {
@@ -40,10 +53,13 @@ class App extends Component {
       width: 25,
       height: 35
     };
+
     const { viewport, marker } = this.state;
+
+
     return (
       <div>
-        <StartButton label="Start game" ></StartButton>
+        <button onClick={this.togglePopup.bind(this)}>Start game </button>  
 
         <ReactMapGL
           {...viewport}
@@ -63,6 +79,13 @@ class App extends Component {
               alt="green_marker"
             ></img>
           </Marker>
+          {this.state.showPopup ?   
+          <Popup  
+          text='Question One:' 
+          closePopup={this.togglePopup.bind(this)}  
+          />  
+        : null  
+          }  
         </ReactMapGL>
       </div>
     );
