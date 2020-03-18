@@ -37,14 +37,11 @@ jobs:
       script: chmod +x ./scripts/* && ./scripts/build_docker_image.sh sweng-devops
     - stage: deploy_develop
       install: chmod +x ./scripts/* && ./scripts/install.sh develop
-      script: skip
+      script: source ./scripts/build_docker_image.sh
       deploy:
         - provider: script
           skip_cleanup: true
-          script: 
-            - chmod +x ./scripts/* 
-            - source ./scripts/build_docker_image.sh
-            - ./scripts/deploy.sh develop
+          script: chmod +x ./scripts/* && ./scripts/deploy.sh develop
           on:
             all_branches: true
     - stage: test
