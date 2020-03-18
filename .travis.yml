@@ -10,6 +10,7 @@ script:
 - npm run lint:fix
 - npm run build
 - npm run test
+- npm install wait-on
 - npm start & wait-on http://localhost:3000
 - $(npm bin)/cypress run --record --key 3c488038-b995-46f1-b915-512f43a83841
 deploy:
