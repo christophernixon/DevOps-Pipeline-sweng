@@ -41,6 +41,8 @@ jobs:
       deploy:
         - provider: script
           script: chmod +x ./scripts/* && ./scripts/deploy.sh sweng-devops
+          on:
+            branch: develop
     - stage: test
       script: skip
     - stage: deploy_production
