@@ -40,7 +40,6 @@ jobs:
       script: skip
       deploy:
         - provider: script
-          skip_cleanup: true
           script: chmod +x ./scripts/* && ./scripts/deploy.sh sweng-devops
     - stage: test
       script: skip
