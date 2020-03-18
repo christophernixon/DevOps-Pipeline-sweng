@@ -16,8 +16,6 @@ printf "${mag}Container Registry Namespace: $cr_namespace\n${end}"
 printf "${mag}Container Registry API endpoint: $cr_endpoint\n${end}"
 printf "${mag}Deploy timestamp: $DEPLOY_TIMESTAMP\n${end}"
 
-# Setting timestamp to be used in custom image tag
-export DEPLOY_TIMESTAMP=`date +'%Y%m%d-%H%M%S'`
 # Build the docker image, tag it with a custom tag and push it to the given CR namespace
 log_info "Building image, tagging as $DEPLOY_TIMESTAMP-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH and latest\n"
 docker build --tag $cr_endpoint/$cr_namespace/$cr_namespace:$DEPLOY_TIMESTAMP-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH .
