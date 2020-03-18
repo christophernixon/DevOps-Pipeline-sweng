@@ -40,6 +40,7 @@ printf "${mag}Container Registry Repository: $cr_repository\n${end}"
 printf "${mag}Container Registry API endpoint: $cr_endpoint\n${end}"
 printf "${mag}Cluster name: $cluster_name\n${end}"
 printf "${mag}Deployment name: $deployment_name\n\n${end}"
+printf "${mag}Deploy timestamp: $DEPLOY_TIMESTAMP\n${end}"
 
 ###############################################################
 # Push docker image from bake stage to IBM Container Registry #

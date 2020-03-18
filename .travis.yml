@@ -11,6 +11,9 @@ services:
   - docker
 notifications:
   slack: group26-sweng:m9L41HvII2Mr7aOkFuGwWCF3
+env:
+  global:
+    - DEPLOY_TIMESTAMP: `date +'%Y%m%d-%H%M%S'`
 
 stages:
   - build
@@ -42,7 +45,7 @@ jobs:
         - provider: script
           script: chmod +x ./scripts/* && ./scripts/deploy.sh develop
           on:
-            branch: develop
+            all_branches: true
     - stage: test
       script: skip
     - stage: deploy_production
