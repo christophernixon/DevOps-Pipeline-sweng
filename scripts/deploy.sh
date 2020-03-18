@@ -53,7 +53,7 @@ log_info "Exposing the deployment on port 3000\n"
 kubectl expose deployment/$deployment_name --type="NodePort" --port 3000
 
 # Extract the public IP for the cluster
-public_ip=$(ibmcloud ks workers $cluster_name -json | jq -r '.[0].publicIP')
+public_ip=$(ibmcloud ks workers --cluster $cluster_name --json -s | jq -r '.[0].publicIP')
 # Extract the NodePort of the kubernetes service
 nodeport=$(kubectl get service $deployment_name -o json | jq -r '.spec.ports[0].nodePort')
 

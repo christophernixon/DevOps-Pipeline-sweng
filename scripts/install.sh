@@ -55,4 +55,3 @@ fi
 
 # Make sure that ibmcloud kubernetes-service is up to date
 ibmcloud plugin update kubernetes-service
-export IKS_BETA_VERSION=1
