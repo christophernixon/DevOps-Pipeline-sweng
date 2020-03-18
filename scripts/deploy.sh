@@ -10,13 +10,33 @@ log_info () {
   printf "${mag}*****\n${end}"
 }
 
-cr_namespace=$1
-run_locally=$2
+environment=$1
+# Setting variables based on targeted deployment environment
+if [ "$environment" == "develop" ]; then
+  cr_namespace="sweng-devops"
+  cr_repository="sweng-devops"
+  cr_endpoint="uk.icr.io"
+  cluster_name="develop_cluster"
+  deployment_name="sweng-devops-develop-deployment"
+elif [ "$environment" == "production" ]; then
+  cr_namespace="sweng-devops-prod"
+  cr_repository="sweng-devops"
+  cr_endpoint="uk.icr.io"
+  cluster_name="prod_cluster"
+  deployment_name="sweng-devops-prod-deployment"
+else
+  log_info "Unable to identify targeted environment. Given environment: $environment\n"
+  exit 1
+fi
+
+cr_namespace="sweng-devops"
 cr_endpoint="uk.icr.io"
 cluster_name="develop_cluster"
 deployment_name="sweng-devops-develop-deployment"
 printf "${mag}**********************Variables**********************\n${end}"
+printf "${mag}Deploying to $environment environment.\n${end}"
 printf "${mag}Container Registry Namespace: $cr_namespace\n${end}"
+printf "${mag}Container Registry Repository: $cr_repository\n${end}"
 printf "${mag}Container Registry API endpoint: $cr_endpoint\n${end}"
 printf "${mag}Cluster name: $cluster_name\n${end}"
 printf "${mag}Deployment name: $deployment_name\n\n${end}"
@@ -26,13 +46,13 @@ printf "${mag}Deployment name: $deployment_name\n\n${end}"
 ###############################################################
 
 log_info "Pushing image to container registry\n"
-docker push $cr_endpoint/$cr_namespace/$cr_namespace:$DEPLOY_TIMESTAMP-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH
+docker push $cr_endpoint/$cr_namespace/$cr_repository:$DEPLOY_TIMESTAMP-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH
 if [ $? -ne 0 ]; then
   log_info "Failed to push image to IBM Cloud container registry, quota may be exceeded.\n"
   ibmcloud cr quota
   exit 1
 else
-  docker push $cr_endpoint/$cr_namespace/$cr_namespace:latest
+  docker push $cr_endpoint/$cr_namespace/$cr_repository:latest
 fi
 
 #############################################
@@ -44,9 +64,9 @@ log_info "Configuring cluster\n"
 ibmcloud ks cluster config --cluster $cluster_name
 
 # Remove previous deployment and create new deployment
-log_info "Creating deployment on cluster pointing to image $cr_endpoint/$cr_namespace/$cr_namespace:latest\n"
+log_info "Creating deployment on cluster pointing to image $cr_endpoint/$cr_namespace/$cr_repository:latest\n"
 kubectl delete deployment $deployment_name
-kubectl create deployment $deployment_name --image=$cr_endpoint/$cr_namespace/$cr_namespace:latest
+kubectl create deployment $deployment_name --image=$cr_endpoint/$cr_namespace/$cr_repository:latest
 
 # Expose the deployment on port 3000
 log_info "Exposing the deployment on port 3000\n"
