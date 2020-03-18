@@ -3,9 +3,9 @@ import ReactMapGL, { Marker } from "react-map-gl";
 import green_marker from "./images/green_marker.png";
 import "./App.css";
 import "./map.jsx";
-import StartButton from "./components/StartButton.js";
+//import StartButton from "./components/StartButton.js";
 import Popup from './components/Popup';
-import questions from './data/questions.txt';
+//import questions from './data/questions.txt';
 
 
 class App extends Component { 
@@ -59,7 +59,7 @@ class App extends Component {
 
     return (
       <div>
-        <button onClick={this.togglePopup.bind(this)}>Start game </button>  
+        <button data-testid='button' className='button' onClick={this.togglePopup.bind(this)}>Start game </button>  
 
         <ReactMapGL
           {...viewport}
