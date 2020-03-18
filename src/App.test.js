@@ -9,3 +9,14 @@ test('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
  
 });
+
+
+it('renders button correctly', () => {
+  const {getByTestId} = render(<button data-testid= 'button'>Start game</button>)
+  expect(getByTestId('button').textContent).toBe("Start game")
+})
+
+it('renders button correctly', () => {
+  const {getByTestId} = render(<button data-testid= 'button'>Next Question</button>)
+  expect(getByTestId('button').textContent).toBe("Next Question")
+})
