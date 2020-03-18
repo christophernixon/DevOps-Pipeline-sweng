@@ -40,14 +40,13 @@ printf "${mag}Container Registry Repository: $cr_repository\n${end}"
 printf "${mag}Container Registry API endpoint: $cr_endpoint\n${end}"
 printf "${mag}Cluster name: $cluster_name\n${end}"
 printf "${mag}Deployment name: $deployment_name\n\n${end}"
-printf "${mag}Deploy timestamp: $DEPLOY_TIMESTAMP\n${end}"
 
 ###############################################################
 # Push docker image from bake stage to IBM Container Registry #
 ###############################################################
 
 log_info "Pushing image to container registry\n"
-docker push $cr_endpoint/$cr_namespace/$cr_repository:$DEPLOY_TIMESTAMP-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH
+docker push $cr_endpoint/$cr_namespace/$cr_repository:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH
 if [ $? -ne 0 ]; then
   log_info "Failed to push image to IBM Cloud container registry, quota may be exceeded.\n"
   ibmcloud cr quota

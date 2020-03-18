@@ -35,8 +35,7 @@ jobs:
         - $(npm bin)/cypress run --record --key 3c488038-b995-46f1-b915-512f43a83841
     - stage: bake
       script: 
-        - chmod +x ./scripts/* 
-        - source ./scripts/calc_deploy_timestamp.sh
+        - chmod +x ./scripts/*
         - ./scripts/build_docker_image.sh sweng-devops
     - stage: deploy_develop
       install: chmod +x ./scripts/* && ./scripts/install.sh develop
