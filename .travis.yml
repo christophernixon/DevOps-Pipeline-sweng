@@ -11,9 +11,6 @@ services:
   - docker
 notifications:
   slack: group26-sweng:m9L41HvII2Mr7aOkFuGwWCF3
-env:
-  global:
-    - DEPLOY_TIMESTAMP: `date +'%Y%m%d-%H%M%S'`
 
 stages:
   - build
@@ -31,11 +28,11 @@ jobs:
       - npm run build
     - stage: analyze
       script: 
-      - npm run lint:fix
-      - npm run test
-      - npm install wait-on
-      - npm start & wait-on http://localhost:3000
-      - $(npm bin)/cypress run --record --key 3c488038-b995-46f1-b915-512f43a83841
+        - npm run lint:fix
+        - npm run test
+        - npm install wait-on
+        - npm start & wait-on http://localhost:3000
+        - $(npm bin)/cypress run --record --key 3c488038-b995-46f1-b915-512f43a83841
     - stage: bake
       script: chmod +x ./scripts/* && ./scripts/build_docker_image.sh sweng-devops
     - stage: deploy_develop
@@ -43,7 +40,10 @@ jobs:
       script: skip
       deploy:
         - provider: script
-          script: chmod +x ./scripts/* && ./scripts/deploy.sh develop
+          script: 
+            - chmod +x ./scripts/* 
+            - source ./scripts/build_docker_image.sh
+            - ./scripts/deploy.sh develop
           on:
             all_branches: true
     - stage: test
