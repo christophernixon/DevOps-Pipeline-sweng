@@ -18,7 +18,7 @@ log_info "Installing IBM Cloud CLI\n"
 curl -sL https://ibm.biz/idt-installer | bash
 
 # Download and install kubectl
-if [ $run_locally == 'run-locally' ]; then
+if [ "$run_locally" == "run-locally" ]; then
  log_info "Installing kubectl using Homebrew.\n"
   brew install kubectl
   brew upgrade kubernetes-cli
