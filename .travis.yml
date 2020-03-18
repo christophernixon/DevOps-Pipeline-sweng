@@ -1,23 +1,49 @@
 language: node_js
+os: linux
+dist: xenial
 node_js:
 - stable
 cache:
   directories:
   - node_modules
+  timeout: 3
 services:
   - docker
-script:
-- npm run lint:fix
-- npm run build
-- npm run test
-- npm install wait-on
-- npm start & wait-on http://localhost:3000
-- $(npm bin)/cypress run --record --key 3c488038-b995-46f1-b915-512f43a83841
-deploy:
-  - provider: script
-    skip_cleanup: true
-    script: chmod +x ./scripts/* && ./scripts/deploy.sh sweng-devops
-    on:
-      all_branches: true
 notifications:
   slack: group26-sweng:m9L41HvII2Mr7aOkFuGwWCF3
+
+stages:
+  - build
+  - analyze
+  - bake
+  - deploy_develop
+  - test
+  - name: deploy_production
+    if: branch = master
+
+jobs:
+  include:
+    - stage: build
+      script: 
+      - npm run build
+    - stage: analyze
+      script: 
+      - npm run lint:fix
+      - npm run test
+      - npm install wait-on
+      - npm start & wait-on http://localhost:3000
+      - $(npm bin)/cypress run --record --key 3c488038-b995-46f1-b915-512f43a83841
+    - stage: bake
+      script: chmod +x ./scripts/* && ./scripts/build_docker_image.sh sweng-devops
+    - stage: deploy_develop
+      install: chmod +x ./scripts/* && ./scripts/install.sh
+      script: skip
+      deploy:
+        - provider: script
+          script: chmod +x ./scripts/* && ./scripts/deploy.sh sweng-devops
+          on:
+            branch: develop
+    - stage: test
+      script: skip
+    - stage: deploy_production
+      script: skip
