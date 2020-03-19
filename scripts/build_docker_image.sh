@@ -22,7 +22,7 @@ printf "${mag}Container Registry API endpoint: $cr_endpoint\n${end}"
 ##################################################################
 
 log_info "Running retention policy to keep only most-recent image in CR."
-ibmcloud cr retention-run -f --images 1 $cr_namespace
+ibmcloud cr retention-run -f --images 30 $cr_namespace
 
 #######################################################
 # Build the docker image and tag it with a custom tag #
