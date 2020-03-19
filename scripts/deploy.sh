@@ -45,6 +45,9 @@ printf "${mag}Deployment name: $deployment_name\n\n${end}"
 # Push docker image from bake stage to IBM Container Registry #
 ###############################################################
 
+log_info "Displaying docker images:"
+docker images
+
 log_info "Pushing image to container registry\n"
 docker push $cr_endpoint/$cr_namespace/$cr_repository:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH
 if [ $? -ne 0 ]; then
