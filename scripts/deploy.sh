@@ -29,10 +29,6 @@ else
   exit 1
 fi
 
-cr_namespace="sweng-devops"
-cr_endpoint="uk.icr.io"
-cluster_name="develop_cluster"
-deployment_name="sweng-devops-develop-deployment"
 printf "${mag}**********************Variables**********************\n${end}"
 printf "${mag}Deploying to $environment environment.\n${end}"
 printf "${mag}Container Registry Namespace: $cr_namespace\n${end}"
@@ -54,8 +50,9 @@ log_info "Creating deployment on cluster pointing to image $cr_endpoint/$cr_name
 kubectl delete deployment $deployment_name
 kubectl create deployment $deployment_name --image=$cr_endpoint/$cr_namespace/$cr_repository:latest
 
-# Expose the deployment on port 3000
-log_info "Exposing the deployment on port 3000\n"
+# Expose the deployment on port 80
+log_info "Exposing the deployment on port 80\n"
+kubectl delete service $deployment_name
 kubectl expose deployment/$deployment_name --type="NodePort" --port 80
 
 # Extract the public IP for the cluster
