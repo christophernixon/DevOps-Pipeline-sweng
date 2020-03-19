@@ -34,6 +34,7 @@ jobs:
         - npm start & wait-on http://localhost:3000
         - $(npm bin)/cypress run --record --key 3c488038-b995-46f1-b915-512f43a83841
     - stage: bake
+      install: chmod +x ./scripts/* && ./scripts/bake_install.sh develop
       script: 
         - chmod +x ./scripts/*
         - ./scripts/build_docker_image.sh sweng-devops
