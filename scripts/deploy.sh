@@ -56,7 +56,7 @@ kubectl create deployment $deployment_name --image=$cr_endpoint/$cr_namespace/$c
 
 # Expose the deployment on port 3000
 log_info "Exposing the deployment on port 3000\n"
-kubectl expose deployment/$deployment_name --type="NodePort" --port 3000
+kubectl expose deployment/$deployment_name --type="NodePort" --port 80
 
 # Extract the public IP for the cluster
 public_ip=$(ibmcloud ks workers --cluster $cluster_name --json -s | jq -r '.[0].publicIP')
