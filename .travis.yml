@@ -16,9 +16,9 @@ stages:
   - build
   - analyze
   - bake
-  - deploy_develop
-  - test
-  - name: deploy_production
+  - deploy to develop
+  # - test
+  - name: deploy to production
     if: branch = master
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
       script: 
         - chmod +x ./scripts/*
         - ./scripts/build_docker_image.sh sweng-devops
-    - stage: deploy_develop
+    - stage: deploy to develop
       install: chmod +x ./scripts/* && ./scripts/install.sh develop
       script: skip
       deploy:
@@ -47,9 +47,9 @@ jobs:
           script: chmod +x ./scripts/* && ./scripts/deploy.sh develop
           on:
             all_branches: true
-    - stage: test
-      script: skip
-    - stage: deploy_production
+    # - stage: test
+    #   script: skip
+    - stage: deploy to production
       install: chmod +x ./scripts/* && ./scripts/install.sh production
       script: skip
       deploy:
