@@ -45,16 +45,6 @@ printf "${mag}Deployment name: $deployment_name\n\n${end}"
 log_info "Configuring cluster\n"
 ibmcloud ks cluster config --cluster $cluster_name
 
-# Remove previous deployment and create new deployment
-log_info "Creating deployment on cluster pointing to image $cr_endpoint/$cr_namespace/$cr_repository:latest\n"
-kubectl delete deployment $deployment_name
-kubectl create deployment $deployment_name --image=$cr_endpoint/$cr_namespace/$cr_repository:latest
-
-# Expose the deployment on port 80
-log_info "Exposing the deployment on port 80\n"
-kubectl delete service $deployment_name
-kubectl expose deployment/$deployment_name --type="NodePort" --port 80
-
 # Extract the public IP for the cluster
 public_ip=$(ibmcloud ks workers --cluster $cluster_name --json -s | jq -r '.[0].publicIP')
 # Extract the NodePort of the kubernetes service
