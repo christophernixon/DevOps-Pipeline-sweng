@@ -1,0 +1,69 @@
+[
+    {
+        "question": "Where is the Statue of Liberty?",
+        "id": "1",
+        "lat": 40.741895,
+        "lon": -73.989308
+    },
+    {
+        "question": "Where is the Louvre?",
+        "id": "2",
+        "lat": 48.8611473,
+        "lon": 2.338027
+    },
+    {
+        "question": "Where did Rebels take over in the Easter Rising?",
+        "id": "3",
+        "lat": 53.3493537902832,
+        "lon": -6.26070499420166
+    },
+    {
+        "question": "Sherlock Holmes lives on what street?",
+        "id": "4",
+        "lat": 51.52322769165039,
+        "lon": -0.15725520253181458
+    },
+    {
+        "question": "What city is hosting the 2020 Olympics?",
+        "id": "5",
+        "lat": 35.6828387,
+        "lon": 139.7594549
+    },
+    {
+        "question": "Where was JFK shot?",
+        "id": "6",
+        "lat": 32.786415100097656,
+        "lon": -96.77510833740234
+    },
+    {
+        "question": "Where is the Book of Kells kept?",
+        "id": "7",
+        "lat": 53.34375,
+        "lon": -6.25521183013916
+    },
+    {
+        "question": "What is the largest airport in the world?",
+        "id": "8",
+        "lat": 26.4682674407959,
+        "lon": 49.797218322753906
+    },
+    {
+        "question": "Where is the Taj Mahal?",
+        "id": "9",
+        "lat": 27.175002,
+        "lon": 78.0421171
+    },
+    {
+        "question": "Where did Shakespeare put on his plays?",
+        "id": "10",
+        "lat": 51.50807571411133,
+        "lon": -0.09714961051940918
+    },
+    {
+        "question": "Where is the Colosseum?",
+        "id": "11",
+        "lat": 41.890220642089844,
+        "lon": 12.492316246032715
+    }
+
+]
