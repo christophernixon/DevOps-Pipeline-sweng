@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.css";
 
-
 class StartButton extends React.Component {
   render() {
     return (
