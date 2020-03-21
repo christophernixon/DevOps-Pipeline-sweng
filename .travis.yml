@@ -29,7 +29,6 @@ jobs:
       - npm run build
     - stage: analyze
       script: 
-        - npm run lint:fix
         - npm run test
     - stage: bake
       install: chmod +x ./scripts/* && ./scripts/bake_install.sh develop

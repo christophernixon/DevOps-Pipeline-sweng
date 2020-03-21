@@ -1,0 +1,15 @@
+#!/bin/bash
+
+printf "Running Linting\n"
+npm run lint:fix
+if [ $? -ne 0 ]; then
+	printf "Error, running linting on these files returned an error code of 1.
+To fix this, please run npm run lint:fix and see what requires changing.
+You can manually skip this with git commit --no-verify\n
+!###Commit Aborted###!\n"
+	exit 1
+else 
+	printf "Linting passed! (warnings are ok, but could do with looking at)\n"
+	exit 0
+fi
+
