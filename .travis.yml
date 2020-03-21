@@ -18,7 +18,7 @@ stages:
   - analyze
   - bake
   - deploy to develop
-  # - test
+  - test
   - name: deploy to production
     if: branch = master
 
