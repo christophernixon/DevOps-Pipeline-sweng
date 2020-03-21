@@ -8,6 +8,7 @@ import Popup from './components/Popup';
 //import questions from './data/questions.txt';
 import data from './data/questionsList.json'
 //import geo from './data/data.geojson'
+import distanceCalculator from './distance'
 
 
 class App extends Component {
@@ -62,11 +63,13 @@ class App extends Component {
     let lat = this.state.marker.latitude
     let latA = this.state.question.lat
     let lonA = this.state.question.lon
-    const dist = distance(lat, lon, latA, lonA)
+    const dist = distanceCalculator(lat, lon, latA, lonA)
    let score = 5000-dist
     if(score<0){
       score =0
     }
+
+    score = score/100;
 
     this.setState({
       score: this.state.score + Math.floor(score)
@@ -138,26 +141,5 @@ function startGame() {
   console.log("Start game button pressed!");
 }
 
-// eslint-disable-next-line
-function distance(lat1, lon1, lat2, lon2) {
-  if ((lat1 === lat2) && (lon1 === lon2)) {
-    return 0;
-  }
-  else {
-    var radlat1 = Math.PI * lat1 / 180;
-    var radlat2 = Math.PI * lat2 / 180;
-    var theta = lon1 - lon2;
-    var radtheta = Math.PI * theta / 180;
-    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-    if (dist > 1) {
-      dist = 1;
-    }
-    dist = Math.acos(dist);
-    dist = dist * 180 / Math.PI;
-    dist = dist * 60 * 1.1515 * 1.609344;
-
-    return dist;
-  }
-}
 
 export default App;
