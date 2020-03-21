@@ -32,7 +32,9 @@ class App extends Component {
       },
 
       showPopup: false,
+      gameOver: false,
       score: 0,
+      counter: 0,
       question: {
         text: data[random].question,
         lat: data[random].lat,
@@ -45,6 +47,24 @@ class App extends Component {
     this.setState({
       showPopup: !this.state.showPopup
     });
+  }
+
+  endGame() {
+    this.setState({
+      gameOver: !this.state.gameOver
+    })
+  }
+
+  restartGame() {
+    this.randomQuestion()
+    //this.endGame()
+    this.setState({
+      gameOver: false,
+      counter: 0,
+      //showPopup: !this.state.showPopup,
+      score: 0
+      
+    })
   }
 
   randomQuestion() {
@@ -72,8 +92,10 @@ class App extends Component {
     score = score/100;
 
     this.setState({
-      score: this.state.score + Math.floor(score)
+      score: this.state.score + Math.floor(score),
+      counter: this.state.counter + 1
     })
+    this.randomQuestion()
   }
 
   _onMarkerDragEnd = event => {
@@ -99,7 +121,7 @@ class App extends Component {
     return (
       <div>
         <button data-testid='button' className='button' onClick={this.togglePopup.bind(this)}>Start game </button>
-       <p>Score: {this.state.score}</p>
+       <p className='scoreBoard'>Score: {this.state.score}</p>
         <ReactMapGL
           {...viewport}
           mapStyle="mapbox://styles/mapbox/streets-v9"
@@ -118,16 +140,25 @@ class App extends Component {
               alt="green_marker"
             ></img>
           </Marker>
-          {this.state.showPopup ?
+          {this.state.showPopup && this.state.counter<5 && !this.state.gameOver?
             <Popup
-              nextQ={this.randomQuestion.bind(this)}
-              submitA={this.submitAnswer.bind(this)}
+              submitA={<button className='button' onClick={this.submitAnswer.bind(this)}>Submit Answer</button>}
+              endGame={<button className='button' onClick={this.endGame.bind(this)}>End Game</button>}
               text={this.state.question.text}
-              closePopup={this.togglePopup.bind(this)}
-              coords={this.state.marker.latitude + ' ' + this.state.marker.longitude}
+              closePopup={<button className='button' onClick={this.togglePopup.bind(this)}>Close</button>}
+              //coords={this.state.marker.latitude + ' ' + this.state.marker.longitude}
             />
             : null
           }
+
+          {this.state.gameOver || this.state.counter>=5?
+            <Popup 
+              text={<h2>{this.state.score > 50? `Well done, your score is: ${this.state.score}`
+            : `Try harder next time, your score is: ${this.state.score}`}</h2>}
+              submitA={<button className='button' onClick={this.restartGame.bind(this)}>Restart Game</button>}
+            />
+            : null
+        }
         </ReactMapGL>
       </div>
     );
