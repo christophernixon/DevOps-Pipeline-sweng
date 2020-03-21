@@ -9,20 +9,16 @@
     "express": "^4.17.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-file-reader": "^1.1.4",
     "react-map-gl": "^5.2.3",
-    "react-scripts": "3.3.1",
-    "wait-on": "^4.0.1"
+    "react-scripts": "3.3.1"
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix",
-    "cypress:open": "cypress open",
-    "cypress:all": "cypress run --record --key 3c488038-b995-46f1-b915-512f43a83841"
+    "lint":"eslint src",
+    "lint:fix":"eslint --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,7 +36,6 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^4.1.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
