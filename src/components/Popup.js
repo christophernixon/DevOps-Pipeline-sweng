@@ -12,7 +12,6 @@ class Popup extends React.Component {
             this.props.submitA();
           }}>Submit Answer</button>
           <button className='button' onClick={this.props.closePopup}>Close</button>
-          <h4>{this.props.coords}</h4>
         </div>
       </div>
     );

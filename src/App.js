@@ -99,10 +99,7 @@ class App extends Component {
     return (
       <div>
         <button data-testid='button' className='button' onClick={this.togglePopup.bind(this)}>Start game </button>
-       <p>{this.state.score}</p>
-    <p>{this.state.question.lat}</p>
-    <p>{this.state.question.lon}</p>
-
+       <p>Score: {this.state.score}</p>
         <ReactMapGL
           {...viewport}
           mapStyle="mapbox://styles/mapbox/streets-v9"

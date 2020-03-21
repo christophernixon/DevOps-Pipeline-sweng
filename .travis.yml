@@ -6,6 +6,7 @@ node_js:
 cache:
   directories:
   - node_modules
+  - /home/travis/.cache/Cypress
   timeout: 3
 services:
   - docker
@@ -17,7 +18,7 @@ stages:
   - analyze
   - bake
   - deploy to develop
-  # - test
+  - test
   - name: deploy to production
     if: branch = master
 
