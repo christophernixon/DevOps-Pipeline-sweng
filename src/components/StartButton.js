@@ -1,6 +1,5 @@
-import React from "react";
-import "./style.css";
-
+import React from 'react';
+import './style.css';
 
 class StartButton extends React.Component {
   render() {
@@ -14,8 +13,7 @@ class StartButton extends React.Component {
   }
 }
 function myFunction() {
-  console.log("Button pressed!");
-
+  console.log('Button pressed!');
 }
 
 export default StartButton;

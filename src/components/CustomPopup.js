@@ -1,25 +1,16 @@
-  import React from 'react';  
-  import './style.css';  
+import React from 'react';
+import './style.css';
 
-  class CustomPopup extends React.Component {  
-    render() {  
-  return (  
-  <div className='popup'>
+class CustomPopup extends React.Component {
+  render() {
+    return (
+      <div className='popup'>
 
+      </div>
 
-    
+    );
+  }
+}
 
-  </div>
-
-  
-
-
-
-
-  
-  );  
-  }  
-  }  
-  
-  export default CustomPopup;
+export default CustomPopup;
 

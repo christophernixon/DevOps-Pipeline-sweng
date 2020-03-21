@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src",
-    "lint:fix": "eslint --fix",
+    "lint:fix": "eslint src --fix",
     "cypress:open": "cypress open",
     "cypress:all": "cypress run --record --key 3c488038-b995-46f1-b915-512f43a83841"
   },
