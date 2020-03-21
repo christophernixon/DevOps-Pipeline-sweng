@@ -25,6 +25,9 @@
 		"semi":["warn","always"],
 		"quotes":["error","single"],
 		"space-before-function-paren":["warn","never"],
-		"no-multiple-empty-lines":["warn",{"max":1}]
+		"no-multiple-empty-lines":["warn",{"max":1}],
+		"no-unused-vars":["warn",{"vars":"local"}],
+		"no-undef":["warn"],
+		"react/prop-types":[0]
     }
 }
