@@ -55,4 +55,8 @@ public_ip=$(ibmcloud ks workers --cluster $cluster_name --json -s | jq -r '.[0].
 # Extract the NodePort of the kubernetes service
 nodeport=$(kubectl get service $deployment_name -o json | jq -r '.spec.ports[0].nodePort')
 
+<<<<<<< HEAD
 log_info "The application can now be viewed at http://$public_ip:$nodeport/\n"
+=======
+log_info "The application can now be viewed at http://$public_ip:$nodeport/\n"
+>>>>>>> master
