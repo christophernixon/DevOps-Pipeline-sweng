@@ -1,19 +1,20 @@
-import React from 'react';
-import './style.css';
+import React from "react";
+import "./style.css";
 
 class StartButton extends React.Component {
   render() {
     return (
       <table className="nav" align="center">
-        <button data-testid='button' className="button" onClick={this.togglePopup.bind(this)}>
-          {this.props.label}
+        <button className="button" onClick={myFunction}>
+          Start Game
         </button>
       </table>
     );
   }
 }
 function myFunction() {
-  console.log('Button pressed!');
+  console.log("Button pressed!");
+
 }
 
 export default StartButton;
