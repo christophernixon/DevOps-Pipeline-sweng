@@ -28,8 +28,7 @@ jobs:
       script: 
       - npm run build
     - stage: analyze
-      script: 
-        - npm run test
+      script: skip
     - stage: bake
       install: chmod +x ./scripts/* && ./scripts/bake_install.sh develop
       script: 
@@ -45,10 +44,8 @@ jobs:
           on:
             all_branches: true
     - stage: test
-      install: npm install wait-on
-      script: 
-        - npm start & wait-on http://localhost:3000
-        - npm run cypress:all
+      install: skip
+      script: skip
     - stage: deploy to production
       install: chmod +x ./scripts/* && ./scripts/install.sh production
       script: skip
