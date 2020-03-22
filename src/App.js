@@ -121,7 +121,7 @@ class App extends Component {
     return (
       <div>
         <button data-testid='button' className='button' onClick={this.togglePopup.bind(this)}>Start game </button>
-       <p className='scoreBoard'>Score: {this.state.score}</p>
+        <p className='scoreBoard'>Score: {this.state.score}</p>
         <ReactMapGL
           {...viewport}
           mapStyle="mapbox://styles/mapbox/streets-v9"
@@ -153,8 +153,8 @@ class App extends Component {
 
           {this.state.gameOver || this.state.counter>=5?
             <Popup 
-              text={<h2>{this.state.score > 50? `Well done, your score is: ${this.state.score}`
-            : `Try harder next time, your score is: ${this.state.score}`}</h2>}
+              text={<div>{this.state.score > 50? `Well done, your score is: ${this.state.score}`
+            : `Try harder next time, your score is: ${this.state.score}`}</div>}
               submitA={<button className='button' onClick={this.restartGame.bind(this)}>Restart Game</button>}
             />
             : null
