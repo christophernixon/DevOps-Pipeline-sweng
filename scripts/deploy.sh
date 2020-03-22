@@ -1,58 +1,40 @@
 #!/bin/bash
-# Usage : chmod +x ./scripts/* && ./scripts/deploy.sh <Container Registry Namespace>
+# Usage : chmod +x ./scripts/* && ./scripts/execute.sh <Container Registry Namespace>
 
-# Setting up colored outputs
-mag=$'\e[1;35m'
-end=$'\e[0m'
-log_info () {
-  printf "${mag}*****\n${end}"
-  printf "${mag}$1${end}"
-  printf "${mag}*****\n${end}"
-}
+cr_namespace=$1
+cr_endpoint="uk.icr.io"
+echo "Container Registry Namespace: $cr_namespace"
+echo "Container Registry API endpoint: $cr_endpoint"
 
-environment=$1
-# Setting variables based on targeted deployment environment
-if [ "$environment" == "develop" ]; then
-  cr_namespace="sweng-devops"
-  cr_repository="sweng-devops"
-  cr_endpoint="uk.icr.io"
-  cluster_name="develop_cluster"
-  deployment_name="sweng-devops-develop-deployment"
-elif [ "$environment" == "production" ]; then
-  cr_namespace="sweng-devops-prod"
-  cr_repository="sweng-devops"
-  cr_endpoint="uk.icr.io"
-  cluster_name="prod_cluster"
-  deployment_name="sweng-devops-prod-deployment"
-else
-  log_info "Unable to identify targeted environment. Given environment: $environment\n"
+# Download and install the IBM cloud CLI tools.
+echo "Installing IBM Cloud CLI"
+curl -sL https://ibm.biz/idt-installer | bash
+
+# Logging into the IBM Cloud environment using env variable of API key
+echo "Logging into IBM Cloud using apikey"
+ibmcloud login -a https://api.eu-gb.bluemix.net --apikey $DEVOPS_IBM_KEY
+if [ $? -ne 0 ]; then
+  echo "Failed to authenticate to IBM Cloud"
   exit 1
 fi
 
-printf "${mag}**********************Variables**********************\n${end}"
-printf "${mag}Deploying to $environment environment.\n${end}"
-printf "${mag}Container Registry Namespace: $cr_namespace\n${end}"
-printf "${mag}Container Registry Repository: $cr_repository\n${end}"
-printf "${mag}Container Registry API endpoint: $cr_endpoint\n${end}"
-printf "${mag}Cluster name: $cluster_name\n${end}"
-printf "${mag}Deployment name: $deployment_name\n\n${end}"
+# Logging into the IBM Cloud container registry
+echo "Logging into IBM Cloud container registry"
+ibmcloud cr login
+if [ $? -ne 0 ]; then
+  echo "Failed to authenticate to IBM Cloud container registry"
+  exit 1
+fi
 
-#############################################
-# Deploy to pre-existing kubernetes cluster #
-#############################################
+# Setting timestamp to be used in custom image tag
+DEPLOY_TIMESTAMP=`date +'%Y%m%d-%H%M%S'`
 
-# Configure our pre-existing cluster.
-log_info "Configuring cluster\n"
-ibmcloud ks cluster config --cluster $cluster_name
+# Build the docker image, tag it with a custom tag and push it to the given CR namespace
+echo "Building image, tagging as $DEPLOY_TIMESTAMP-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH and latest"
+docker build --tag $cr_endpoint/$cr_namespace/develop:$DEPLOY_TIMESTAMP-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH .
+docker tag $cr_endpoint/$cr_namespace/develop:$DEPLOY_TIMESTAMP-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH $cr_endpoint/$cr_namespace/develop:latest
 
-# Remove previous deployment and create new deployment
-log_info "Creating deployment on cluster pointing to image $cr_endpoint/$cr_namespace/$cr_repository:latest\n"
-kubectl delete deployment $deployment_name
-kubectl create deployment $deployment_name --image=$cr_endpoint/$cr_namespace/$cr_repository:latest
-
-# Extract the public IP for the cluster
-public_ip=$(ibmcloud ks workers --cluster $cluster_name --json -s | jq -r '.[0].publicIP')
-# Extract the NodePort of the kubernetes service
-nodeport=$(kubectl get service $deployment_name -o json | jq -r '.spec.ports[0].nodePort')
-
-log_info "The application can now be viewed at http://$public_ip:$nodeport/\n"
+# Push built image to Container Registry
+echo "Pushing image to container registry"
+docker push $cr_endpoint/$cr_namespace/develop:$DEPLOY_TIMESTAMP-$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH
+docker push $cr_endpoint/$cr_namespace/develop:latest
