@@ -54,6 +54,7 @@ jobs:
       script: skip
       deploy:
         - provider: script
+          skip_cleanup: true
           script: chmod +x ./scripts/* && ./scripts/deploy.sh production
           on:
             branch: master
