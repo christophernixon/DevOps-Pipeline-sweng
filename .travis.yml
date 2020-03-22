@@ -51,7 +51,9 @@ jobs:
         - npm run cypress:all
     - stage: deploy to production
       install: chmod +x ./scripts/* && ./scripts/install.sh production
-      script: skip
+      script: 
+        - chmod +x ./scripts/*
+        - ./scripts/build_docker_image.sh sweng-devops-prod
       deploy:
         - provider: script
           skip_cleanup: true
