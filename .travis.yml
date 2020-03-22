@@ -28,7 +28,8 @@ jobs:
       script: 
       - npm run build
     - stage: analyze
-      script: skip
+      script: 
+        - npm run test
     - stage: bake
       install: chmod +x ./scripts/* && ./scripts/bake_install.sh develop
       script: 
@@ -44,13 +45,18 @@ jobs:
           on:
             all_branches: true
     - stage: test
-      install: skip
-      script: skip
+      install: npm install wait-on
+      script: 
+        - npm start & wait-on http://localhost:3000
+        - npm run cypress:all
     - stage: deploy to production
       install: chmod +x ./scripts/* && ./scripts/install.sh production
-      script: skip
+      script: 
+        - chmod +x ./scripts/*
+        - ./scripts/build_docker_image.sh sweng-devops-prod
       deploy:
         - provider: script
+          skip_cleanup: true
           script: chmod +x ./scripts/* && ./scripts/deploy.sh production
           on:
             branch: master
