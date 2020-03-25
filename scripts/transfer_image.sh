@@ -34,12 +34,14 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 # Making sure we are logged into the UK registry
-ibmcloud cr login
 ibmcloud cr region-set uk
+ibmcloud cr login
 # Pull latest image
 docker pull $cr_endpoint_dev/$cr_namespace_dev/$cr_repository_dev:latest
 # Re-tag image
 docker tag $cr_endpoint_dev/$cr_namespace_dev/$cr_repository_dev:latest $cr_endpoint/$cr_namespace/$cr_repository:latest
+log_info "Showing docker images"
+docker images
 log_info "Pushing re-tagged image to production environment."
 # Logging into the production IBM Cloud environment.
 ibmcloud login -a https://api.eu-gb.bluemix.net --apikey $DEVOPS_IBM_PROD_KEY
@@ -48,8 +50,8 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 # Making sure we are logged into the Dallas registry
-ibmcloud cr login
 ibmcloud cr region-set us-south
+ibmcloud cr login
 docker push $cr_endpoint/$cr_namespace/$cr_repository:latest
 log_info "Making sure image was pushed to production environment."
 ibmcloud cr images
