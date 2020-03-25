@@ -50,13 +50,12 @@ jobs:
         - npm start & wait-on http://localhost:3000
         - npm run cypress:all
     - stage: deploy to production
-      install: chmod +x ./scripts/* && ./scripts/install.sh production
-      script: 
-        - chmod +x ./scripts/*
-        - ./scripts/build_docker_image.sh sweng-devops-prod
+      before_install: chmod +x ./scripts/*
+      install: ./scripts/install.sh production
+      script: ./scripts/transfer_image.sh
       deploy:
         - provider: script
           skip_cleanup: true
-          script: chmod +x ./scripts/* && ./scripts/deploy.sh production
+          script: ./scripts/deploy.sh production
           on:
             branch: master
