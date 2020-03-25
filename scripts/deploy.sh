@@ -19,9 +19,9 @@ if [ "$environment" == "develop" ]; then
   cluster_name="develop_cluster"
   deployment_name="sweng-devops-develop-deployment"
 elif [ "$environment" == "production" ]; then
-  cr_namespace="sweng-devops-prod"
+  cr_namespace="sweng-devops"
   cr_repository="sweng-devops"
-  cr_endpoint="uk.icr.io"
+  cr_endpoint="us.icr.io"
   cluster_name="prod_cluster"
   deployment_name="sweng-devops-prod-deployment"
 else
