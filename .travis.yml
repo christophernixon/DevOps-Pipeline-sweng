@@ -31,17 +31,17 @@ jobs:
       script: 
         - npm run test
     - stage: bake
-      install: chmod +x ./scripts/* && ./scripts/bake_install.sh develop
-      script: 
-        - chmod +x ./scripts/*
-        - ./scripts/build_docker_image.sh sweng-devops
+      before_install: chmod +x ./scripts/*
+      install: ./scripts/bake_install.sh develop
+      script: ./scripts/build_docker_image.sh sweng-devops
     - stage: deploy to develop
-      install: chmod +x ./scripts/* && ./scripts/install.sh develop
+      before_install: chmod +x ./scripts/*
+      install: ./scripts/install.sh develop
       script: skip
       deploy:
         - provider: script
           skip_cleanup: true
-          script: chmod +x ./scripts/* && ./scripts/deploy.sh develop
+          script: ./scripts/deploy.sh develop
           on:
             all_branches: true
     - stage: test
