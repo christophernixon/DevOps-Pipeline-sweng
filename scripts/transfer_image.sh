@@ -38,8 +38,15 @@ ibmcloud cr region-set uk
 ibmcloud cr login
 # Pull latest image
 docker pull $cr_endpoint_dev/$cr_namespace_dev/$cr_repository_dev:latest
+if [ $? -ne 0 ]; then
+  log_info "Failed to pull image from IBM develop container registry, quota may be exceeded.\n"
+  ibmcloud cr quota
+  ibmcloud cr images
+  exit 1
+fi
 # Re-tag image
 docker tag $cr_endpoint_dev/$cr_namespace_dev/$cr_repository_dev:latest $cr_endpoint/$cr_namespace/$cr_repository:latest
+docker tag $cr_endpoint/$cr_namespace/$cr_repository:latest $cr_endpoint/$cr_namespace/$cr_repository:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH
 log_info "Showing docker images"
 docker images
 log_info "Pushing re-tagged image to production environment."
@@ -53,5 +60,13 @@ fi
 ibmcloud cr region-set us-south
 ibmcloud cr login
 docker push $cr_endpoint/$cr_namespace/$cr_repository:latest
+if [ $? -ne 0 ]; then
+  log_info "Failed to push image to IBM production container registry, quota may be exceeded.\n"
+  ibmcloud cr quota
+  ibmcloud cr images
+  exit 1
+else
+  docker push $cr_endpoint/$cr_namespace/$cr_repository:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH  
+fi
 log_info "Making sure image was pushed to production environment."
 ibmcloud cr images
