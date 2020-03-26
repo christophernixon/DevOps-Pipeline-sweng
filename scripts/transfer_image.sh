@@ -28,7 +28,7 @@ printf "${mag}Container Registry Dev Repository: $cr_repository_dev\n${end}"
 ######################################
 log_info "Pulling and re-tagging latest image from develop environment."
 # Logging into the develop IBM Cloud environment.
-ibmcloud login -a https://api.eu-gb.bluemix.net --apikey $DEVOPS_IBM_KEY
+ibmcloud login -a https://api.eu-gb.bluemix.net --apikey $DEVOPS_IBM_DEV_KEY
 if [ $? -ne 0 ]; then
   log_info "Failed to authenticate to IBM Cloud\n"
   exit 1
@@ -36,6 +36,14 @@ fi
 # Making sure we are logged into the UK registry
 ibmcloud cr region-set uk
 ibmcloud cr login
+
+##################################################################
+# Run retention policy to ensure storage limits aren't exceeded. #
+##################################################################
+
+log_info "Running retention policy to keep only most-recent image in CR."
+ibmcloud cr retention-run -f --images 30 $cr_namespace
+
 # Pull latest image
 docker pull $cr_endpoint_dev/$cr_namespace_dev/$cr_repository_dev:latest
 if [ $? -ne 0 ]; then

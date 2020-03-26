@@ -10,7 +10,7 @@ log_info () {
 }
 
 cr_namespace=$1
-cr_endpoint="uk.icr.io"
+cr_endpoint="de.icr.io"
 cr_repository="sweng-devops"
 printf "${mag}**********************Variables**********************\n${end}"
 printf "${mag}Container Registry Namespace: $cr_namespace\n${end}"

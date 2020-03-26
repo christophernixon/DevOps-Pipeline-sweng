@@ -15,7 +15,7 @@ environment=$1
 if [ "$environment" == "develop" ]; then
   cr_namespace="sweng-devops"
   cr_repository="sweng-devops"
-  cr_endpoint="uk.icr.io"
+  cr_endpoint="de.icr.io"
   cluster_name="develop_cluster"
   deployment_name="sweng-devops-develop-deployment"
 elif [ "$environment" == "production" ]; then

@@ -21,7 +21,7 @@ curl -sL https://ibm.biz/idt-installer | bash
 
 # Choosing which api key to use depending on whether develop or prod environment is being used.
 if [ "$environment" == "develop" ]; then
-  API_KEY=$DEVOPS_IBM_KEY
+  API_KEY=$DEVOPS_IBM_DEV_KEY
 elif [ "$environment" == "production" ]; then
   API_KEY=$DEVOPS_IBM_PROD_KEY
 else
