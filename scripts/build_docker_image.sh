@@ -22,6 +22,8 @@ printf "${mag}Container Registry API endpoint: $cr_endpoint\n${end}"
 ##################################################################
 
 log_info "Running retention policy to keep only most-recent image in CR."
+ibmcloud cr region-set eu-de
+ibmcloud cr login
 ibmcloud cr retention-run -f --images 30 $cr_namespace
 
 #######################################################
