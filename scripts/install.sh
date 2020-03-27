@@ -31,12 +31,20 @@ else
   sudo mv ./kubectl /usr/local/bin/kubectl
 fi
 
-# Install jq for processing json from ibmcloud cli
+# Install jq for processing json
 log_info "Installing jq\n"
 if [ "$run_locally" == "true" ]; then
   brew install jq
 else
   sudo apt-get install jq
+fi
+
+# Install envsubst for dynamically updating kubernetes config files
+log_info "Installing envsubst\n"
+if [ "$run_locally" == "true" ]; then
+  brew install gettext
+else
+  sudo apt-get install gettext-base
 fi
 
 # Choosing which api key to use depending on whether develop or prod environment is being used.

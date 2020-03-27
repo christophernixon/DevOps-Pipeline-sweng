@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sweng-devops-${DEPLOYMENT}
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: sweng-devops
+      deployment: ${DEPLOYMENT}
+  template:
+    metadata:
+      labels:
+        app: sweng-devops
+        deployment: ${DEPLOYMENT}
+    spec:
+      containers:
+      - name: sweng-devops
+        image: ${REGION}/${NAMESPACE}/${REPOSITORY}:${IMAGE_TAG}
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 5
