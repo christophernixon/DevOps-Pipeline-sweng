@@ -2,11 +2,13 @@
 
 # Setting up colored outputs
 mag=$'\e[1;35m'
+red=$'\e[1;31m'
 end=$'\e[0m'
+logging_color=$mag
 log_info () {
-  printf "${mag}*****\n${end}"
-  printf "${mag}$1${end}"
-  printf "${mag}*****\n${end}"
+  printf "${logging_color}*****\n${end}"
+  printf "${logging_color}$1${end}"
+  printf "${logging_color}*****\n${end}"
 }
 
 cr_namespace=$1
@@ -43,6 +45,7 @@ docker images
 log_info "Pushing image to container registry\n"
 docker push $cr_endpoint/$cr_namespace/$cr_repository:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH
 if [ $? -ne 0 ]; then
+  logging_color=$red
   log_info "Failed to push image to IBM Cloud container registry, quota may be exceeded.\n"
   ibmcloud cr quota
   ibmcloud cr images
