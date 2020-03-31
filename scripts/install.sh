@@ -62,7 +62,7 @@ fi
 
 # Logging into the IBM Cloud environment using env variable of API key
 log_info "Logging into IBM Cloud using apikey\n"
-ibmcloud login -a https://api.eu-gb.bluemix.net --apikey $API_KEY
+ibmcloud login --apikey $API_KEY
 if [ $? -ne 0 ]; then
   logging_color=$red
   log_info "Failed to authenticate to IBM Cloud\n"

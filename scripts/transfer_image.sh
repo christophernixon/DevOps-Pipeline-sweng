@@ -30,7 +30,7 @@ printf "${mag}Container Registry Dev Repository: $cr_repository_dev\n${end}"
 ######################################
 log_info "Pulling and re-tagging latest image from develop environment."
 # Logging into the develop IBM Cloud environment.
-ibmcloud login -a https://api.eu-gb.bluemix.net --apikey $DEVOPS_IBM_DEV_KEY
+ibmcloud login --apikey $DEVOPS_IBM_DEV_KEY
 if [ $? -ne 0 ]; then
   logging_color=$red
   log_info "Failed to authenticate to IBM Cloud\n"
