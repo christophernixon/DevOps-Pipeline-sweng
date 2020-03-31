@@ -1,4 +1,5 @@
 ## Developer Guide
+[Back to all guides.](https://christophernixon.github.io/DevOps-Pipeline-sweng)
 
 - Clone the git repository from [github](https://github.com/christophernixon/DevOps-Pipeline-sweng.git).
 
@@ -14,3 +15,5 @@ respectively.
 
 - For running the end-to-end tests on the application, you must change the
 `baseURL` in `cypress.json` and then run `npm run cypress:all`.
+
+[Back to all guides.](https://christophernixon.github.io/DevOps-Pipeline-sweng)
