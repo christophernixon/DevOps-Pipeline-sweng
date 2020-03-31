@@ -14,9 +14,10 @@ log_info () {
 cr_endpoint="us.icr.io"
 cr_namespace="sweng-devops"
 cr_repository="sweng-devops"
-cr_endpoint_dev="uk.icr.io"
+cr_endpoint_dev="de.icr.io"
 cr_namespace_dev="sweng-devops"
 cr_repository_dev="sweng-devops"
+REGION="eu-de"
 printf "${mag}**********************Variables**********************\n${end}"
 printf "${mag}Container Registry API endpoint: $cr_endpoint\n${end}"
 printf "${mag}Container Registry Namespace: $cr_namespace\n${end}"
@@ -30,14 +31,14 @@ printf "${mag}Container Registry Dev Repository: $cr_repository_dev\n${end}"
 ######################################
 log_info "Pulling and re-tagging latest image from develop environment."
 # Logging into the develop IBM Cloud environment.
-ibmcloud login -a https://api.eu-gb.bluemix.net --apikey $DEVOPS_IBM_DEV_KEY
+ibmcloud login --apikey $DEVOPS_IBM_DEV_KEY -r $REGION
 if [ $? -ne 0 ]; then
   logging_color=$red
   log_info "Failed to authenticate to IBM Cloud\n"
   exit 1
 fi
-# Making sure we are logged into the UK registry
-ibmcloud cr region-set uk
+# Making sure we are logged into the Frankfurt registry
+ibmcloud cr region-set eu-de
 ibmcloud cr login
 
 ##################################################################
@@ -63,7 +64,8 @@ log_info "Showing docker images"
 docker images
 log_info "Pushing re-tagged image to production environment."
 # Logging into the production IBM Cloud environment.
-ibmcloud login -a https://api.eu-gb.bluemix.net --apikey $DEVOPS_IBM_PROD_KEY
+REGION="us-south"
+ibmcloud login --apikey $DEVOPS_IBM_PROD_KEY -r $REGION
 if [ $? -ne 0 ]; then
   logging_color=$red
   log_info "Failed to authenticate to IBM Cloud\n"

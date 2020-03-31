@@ -24,8 +24,10 @@ curl -sL https://ibm.biz/idt-installer | bash
 # Choosing which api key to use depending on whether develop or prod environment is being used.
 if [ "$environment" == "develop" ]; then
   API_KEY=$DEVOPS_IBM_DEV_KEY
+  REGION="eu-de"
 elif [ "$environment" == "production" ]; then
   API_KEY=$DEVOPS_IBM_PROD_KEY
+  REGION="us-south"
 else
   logging_color=$red
   log_info "Unable to identify targeted environment. Given environment: $environment\n"
@@ -34,7 +36,7 @@ fi
 
 # Logging into the IBM Cloud environment using env variable of API key
 log_info "Logging into IBM Cloud using apikey\n"
-ibmcloud login -a https://api.eu-gb.bluemix.net --apikey $API_KEY
+ibmcloud login --apikey $API_KEY -r $REGION 
 if [ $? -ne 0 ]; then
   logging_color=$red
   log_info "Failed to authenticate to IBM Cloud\n"
