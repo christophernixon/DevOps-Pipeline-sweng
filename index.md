@@ -31,7 +31,5 @@ CR). Every time a new deployment is made, the relevant container is pulled from 
 the pull traffic restriction is essentially a limit on deployments per month.
 
 - Log into develop/production CR, depending on which one you’re checking by entering:
-
 ```ibmcloud login```
-
 This will require the email and password of the account.
