@@ -1,5 +1,5 @@
 ## User Guide 
-- Visit (http://173.193.102.104:30000/) and press the “Start game” button to play.
+- Visit our [quiz game here]([http://173.193.102.104:30000/) and press the “Start game” button to play.
 ![alt text](https://raw.githubusercontent.com/christophernixon/DevOps-Pipeline-sweng/master/docs/images/start.png)
 
 - A question will pop up, and you must move the green marker on the map to where
