@@ -1,5 +1,3 @@
-# Pipeline Application Tutorial Guides 
-
 ## Admin Guide
 A **system administrator** needs to be able to manage the Continuous Integration/ContinuousDeployment (CI/CD) pipeline, and upgrade the application when necessary. Some of the tasks that a system administrator might want to do are listed below.
 
@@ -211,38 +209,3 @@ run in, and the running of stages can be conditioned on the branch if necessary.
 
 - Under the `jobs.include` field, one can add the scripts to be run during the stage. The
 format can be modelled on the existing stages.
-
-
-## Developer Guide
-
-- Clone the git repository from [github](https://github.com/christophernixon/DevOps-Pipeline-sweng.git).
-
-- To run the front-end, you must have npm node modules and react.js installed on your
-computer.
-
-- From the command line, cd into the git repository and `npm start` to run the
-web-application on a local server or `npm test` to test the application.
-
-- If you want to check if the application properly compiled into a container or to run
-the container locally, the commands are `docker build` and `docker run`
-respectively.
-
-- For running the end-to-end tests on the application, you must change the
-`baseURL` in `cypress.json` and then run `npm run cypress:all`.
-
-
-## User Guide 
-- Visit (http://173.193.102.104:30000/) and press the “Start game” button to play.
-![alt text](https://github.com/christophernixon/DevOps-Pipeline-sweng/blob/master/docs/images/start.png)
-
-- A question will pop up, and you must move the green marker on the map to where
-you think the answer is.
-![alt text](https://github.com/christophernixon/DevOps-Pipeline-sweng/blob/master/docs/images/pin.png)
-
-- Once you’re happy with the marker placement, press the `Submit Answer` button.
-
-- You will then receive a score, out of a maximum of 50 points per question.
-![alt text](https://github.com/christophernixon/DevOps-Pipeline-sweng/blob/master/docs/images/score.png)
-
-- After 5 questions you’ll find out whether you won or lost.
-
