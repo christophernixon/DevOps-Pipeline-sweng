@@ -7,14 +7,14 @@ A **system administrator** needs to be able to manage the Continuous Integration
 3. Installing Kubectl: This is required to run commands against Kubernetes Clusters. It is required for several of the steps below, and details for how to install it can be found [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 ### Quick links
-- [Trigger a deployment to production](#Trigger\ a\ deployment\ to\ production)
-- [Check the status of the Develop/Production Cloud Registries](#Check\ the\ status\ of\ the\ Develop/Production\ Cloud\ Registries)
-- [Modify/Update the CR image retention policy](#Modify/Update\ the\ CR\ image\ retention\ policy)
-- [Check the status of the Develop/Production Kubernetes Clusters](#Check\ the\ status\ of\ the\ Develop/Production\ Kubernetes\ Clusters)
-- [Check the color of the current deployment](#Check\ the\ color\ of\ the\ current\ deployment)
-- [Roll-back to previous deployment](#Roll-back\ to\ previous\ deployment)
-- [Check the endpoints for current Develop/Production deployments](#Check\ the\ endpoints\ for\ current\ Develop/Production\ deployments)
-- [Add another stage to the pipeline](#Add\ another\ stage\ to\ the\ pipeline)
+- [Trigger a deployment to production](#trigger-a-deployment-to-production)
+- [Check the status of the Develop/Production Cloud Registries](#check-the-status-of-the-developproduction-cloud-registries)
+- [Modify/Update the CR image retention policy](#modifyupdate-the-cr-image-retention-policy)
+- [Check the status of the Develop/Production Kubernetes Clusters](#check-the-status-of-the-developproduction-kubernetes-clusters)
+- [Check the color of the current deployment](#check-the-color-of-the-current-deployment)
+- [Roll-back to previous deployment](#roll-back-to-previous-deployment)
+- [Check the endpoints for current Develop/Production deployments](#check-the-endpoints-for-current-developproduction-deployments)
+- [Add another stage to the pipeline](#add-another-stage-to-the-pipeline)
 
 ### Trigger a deployment to production
 A brief overview of the Continuous Integration portion of our pipeline is as follows: 
