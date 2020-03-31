@@ -2,11 +2,13 @@
 
 # Setting up colored outputs
 mag=$'\e[1;35m'
+red=$'\e[1;31m'
 end=$'\e[0m'
+logging_color=$mag
 log_info () {
-  printf "${mag}*****\n${end}"
-  printf "${mag}$1${end}"
-  printf "${mag}*****\n${end}"
+  printf "${logging_color}*****\n${end}"
+  printf "${logging_color}$1${end}"
+  printf "${logging_color}*****\n${end}"
 }
 
 run_locally="false"
@@ -21,10 +23,11 @@ curl -sL https://ibm.biz/idt-installer | bash
 
 # Choosing which api key to use depending on whether develop or prod environment is being used.
 if [ "$environment" == "develop" ]; then
-  API_KEY=$DEVOPS_IBM_KEY
+  API_KEY=$DEVOPS_IBM_DEV_KEY
 elif [ "$environment" == "production" ]; then
   API_KEY=$DEVOPS_IBM_PROD_KEY
 else
+  logging_color=$red
   log_info "Unable to identify targeted environment. Given environment: $environment\n"
   exit 1
 fi
@@ -33,6 +36,7 @@ fi
 log_info "Logging into IBM Cloud using apikey\n"
 ibmcloud login -a https://api.eu-gb.bluemix.net --apikey $API_KEY
 if [ $? -ne 0 ]; then
+  logging_color=$red
   log_info "Failed to authenticate to IBM Cloud\n"
   exit 1
 fi
@@ -41,6 +45,7 @@ fi
 log_info "Logging into IBM Cloud container registry\n"
 ibmcloud cr login
 if [ $? -ne 0 ]; then
+  logging_color=$red
   log_info "Failed to authenticate to IBM Cloud container registry\n"
   exit 1
 fi
