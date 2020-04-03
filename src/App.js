@@ -11,6 +11,7 @@ import data from './data/questionsList.json'
 import distanceCalculator from './distance'
 
 
+
 class App extends Component {
 
   constructor(props) {
@@ -120,8 +121,8 @@ class App extends Component {
 
     return (
       <div>
-        <button data-testid='button' className='button' onClick={this.togglePopup.bind(this)}>Start game </button>
-        <p className='scoreBoard'>Score: {this.state.score}</p>
+        <button data-testid='startButton' className='button' onClick={this.togglePopup.bind(this)}>Start game</button>
+        <p data-testid='scoreboard' className='scoreBoard' score = {this.state.score}>Score: {this.state.score}</p>
         <ReactMapGL
           {...viewport}
           mapStyle="mapbox://styles/mapbox/streets-v9"
@@ -142,10 +143,10 @@ class App extends Component {
           </Marker>
           {this.state.showPopup && this.state.counter<5 && !this.state.gameOver?
             <Popup
-              submitA={<button className='button' onClick={this.submitAnswer.bind(this)}>Submit Answer</button>}
-              endGame={<button className='button' onClick={this.endGame.bind(this)}>End Game</button>}
+              submitA={<button className='button' data-testid='submitButton' onClick={this.submitAnswer.bind(this)}>Submit Answer</button>}
+              endGame={<button className='button' data-testid='endButton' onClick={this.endGame.bind(this)}>End Game</button>}
               text={this.state.question.text}
-              closePopup={<button className='button' onClick={this.togglePopup.bind(this)}>Close</button>}
+              closePopup={<button className='button' data-testid='closeButton' onClick={this.togglePopup.bind(this)}>Close</button>}
               //coords={this.state.marker.latitude + ' ' + this.state.marker.longitude}
             />
             : null
