@@ -1,8 +1,9 @@
 import React from 'react';
 import App from './App';
 import ReactDOM from 'react-dom';
-import { render } from '@testing-library/react';
-import distanceCalculator from './distance';
+import { render, fireEvent } from '@testing-library/react';
+import distanceCalculator from './components/distance';
+
 
 test('renders without crashing', () => {
   const div = document.createElement('div');
@@ -11,13 +12,13 @@ test('renders without crashing', () => {
 });
 
 it('renders button correctly', () => {
-  const { getByTestId } = render(<button data-testid= 'button'>Start game</button>);
-  expect(getByTestId('button').textContent).toBe('Start game');
+  const { getByTestId } = render(<App/>);
+  expect(getByTestId('startButton').textContent).toBe('Start game');
 });
 
 it('renders button correctly', () => {
-  const { getByTestId } = render(<button data-testid= 'button'>Next Question</button>);
-  expect(getByTestId('button').textContent).toBe('Next Question');
+  const { getByTestId } = render(<button data-testid= 'startButton'>Next Question</button>);
+  expect(getByTestId('startButton').textContent).toBe('Next Question');
 });
 
 it('distance funtion returns correct value', () => {
@@ -25,4 +26,9 @@ it('distance funtion returns correct value', () => {
   const dist = distanceCalculator(41.890220642089844, 12.492316246032715, 51.50807571411133, -0.09714961051940918);
   expect(Math.floor(dist)).toBe(distanceAnswer);
 });
+
+it('should display Score: 0', () => {
+  const { getByTestId } = render(<App/>);
+  expect(getByTestId('scoreboard')).toHaveTextContent('Score: 0')
+ });
 
