@@ -2,9 +2,7 @@ import React from 'react';
 import App from './App';
 import ReactDOM from 'react-dom';
 import { render, fireEvent } from '@testing-library/react';
-import distanceCalculator from './distance';
-//import endGame from './EndGame';
-//import Popup from './components/Popup'
+import distanceCalculator from './components/distance';
 
 
 test('renders without crashing', () => {
@@ -30,10 +28,7 @@ it('distance funtion returns correct value', () => {
 });
 
 it('should display Score: 0', () => {
-  //const div = document.createElement('div');
-  //ReactDOM.render(<App />, div);
   const { getByTestId } = render(<App/>);
-  //fireEvent.click(getByTestId('button'))
   expect(getByTestId('scoreboard')).toHaveTextContent('Score: 0')
  });
 

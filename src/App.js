@@ -3,12 +3,9 @@ import ReactMapGL, { Marker } from "react-map-gl";
 import green_marker from "./images/green_marker.png";
 import "./App.css";
 import "./map.jsx";
-//import StartButton from "./components/StartButton.js";
 import Popup from './components/Popup';
-//import questions from './data/questions.txt';
 import data from './data/questionsList.json'
-//import geo from './data/data.geojson'
-import distanceCalculator from './distance'
+import distanceCalculator from './components/distance'
 
 
 
@@ -58,11 +55,9 @@ class App extends Component {
 
   restartGame() {
     this.randomQuestion()
-    //this.endGame()
     this.setState({
       gameOver: false,
       counter: 0,
-      //showPopup: !this.state.showPopup,
       score: 0
       
     })
@@ -147,7 +142,6 @@ class App extends Component {
               endGame={<button className='button' data-testid='endButton' onClick={this.endGame.bind(this)}>End Game</button>}
               text={this.state.question.text}
               closePopup={<button className='button' data-testid='closeButton' onClick={this.togglePopup.bind(this)}>Close</button>}
-              //coords={this.state.marker.latitude + ' ' + this.state.marker.longitude}
             />
             : null
           }
